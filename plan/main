@@ -3,3 +3,14 @@
 #include <turnkey/samba-dav>
 #include <turnkey/compression>
 #include <turnkey/nfs>
+#include <turnkey/revisioncontrol>
+#include <turnkey/lamp>
+
+
+php5-gd             
+php5-mcrypt           
+php5-curl           
+unzip
+              
+git-doc
+gitweb

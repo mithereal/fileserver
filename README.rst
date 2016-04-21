@@ -1,11 +1,12 @@
-File Server - Simple Network Attached Storage
-=============================================
+Opencart File Server - Simple Network Attached Storage + Opencart 
+=================================================================
 
 An easy to use file server that combines Windows-compatible network file
 sharing with a web based file manager. TurnKey File Server includes 
 support for SMB, SFTP, NFS, WebDAV and rsync file transfer protocols. 
 The server is configured to allow server users to manage files in private 
-or public storage. Based on Samba and SambaDAV.
+or public storage. Based on Samba and SambaDAV. The server is configured with the opencart shopping 
+cart software, Mariadb and Phpmyadmin to allow easy setup and management of an online storefront.
 
 This appliance includes all the standard features in `TurnKey Core`_,
 and on top of that:
@@ -15,6 +16,7 @@ and on top of that:
 - Includes popular compression support (zip, rar, bz2).
 - Includes flip to convert text file endings between UNIX and DOS
   formats.
+- Includes Git.
 - `SambaDAV`_ providing WebUI and WebDAV access.
 - File server (`Samba`_) configurations:
    
@@ -36,7 +38,7 @@ and on top of that:
    - Pre-configured authentication (Samba).
    - Pre-configured repositories (storage, user home directories).
 
-- Default storage: */srv/storage*
+- Default storage: /srv/storage
 - Accessing file server via samba on the command line::
 
     smbclient //1.0.0.61/storage -Uroot
@@ -49,8 +51,10 @@ Credentials *(passwords set at first boot)*
 -  Web based file manager (SambaDAV):
    
    - username **root** (or Samba users)
-
+   - Opencart username: Admin 
+   - Opencart Password: turnkey1 
 
 .. _TurnKey Core: https://www.turnkeylinux.org/core
 .. _Samba: http://www.samba.org/samba/what_is_samba.html
 .. _SambaDAV: https://github.com/1afa/sambadav
+

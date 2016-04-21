@@ -1,0 +1,60 @@
+#!/bin/bash -ex
+
+ADMIN_MAIL=admin@example.com
+ADMIN_PASS=turnkey1
+DOMAIN=www.example.com # set via inithook
+
+DB_NAME=opencart
+DB_USER=opencart
+DB_PASS=$(mcookie)
+
+WEBROOT=/var/www/opencart
+
+# unpack tarball to webroot and set permissions
+unzip -q /usr/local/src/opencart.zip -d /tmp/
+mkdir /var/www/opencart
+mv /tmp/opencart/upload/* /var/www/opencart/
+rm -f /usr/local/src/opencart.zip
+rm -f /tmp/opencart
+
+chown -R www-data:www-data $WEBROOT
+
+# convenience execution variables
+MYSQL_BATCH="mysql --user=root --password=$MYSQL_PASS --batch"
+MYSQL_ADMIN="mysqladmin --user=root --password=$MYSQL_PASS"
+
+# start mysql server
+/etc/init.d/mysql start
+
+# create database
+$MYSQL_ADMIN create $DB_NAME
+
+# create database user with privileges on the database
+$MYSQL_BATCH --execute "grant all privileges on $DB_NAME.* to $DB_USER@localhost identified by '$DB_PASS'; flush privileges;"
+
+# update apache configuration
+a2dissite 000-default
+a2ensite opencart
+a2enmod rewrite
+
+# opencart installation and configuration
+/etc/init.d/apache2 start
+
+##opencart cli install 
+
+php $WEBROOT/install/cli_install.php --db_hostname="$DOMAIN" --db_username="$DB_USER" --db_password="$DB_PASS"  --db_driver ="mysqli" --db_port="3306" --username="Admin" --http_server="$DOMAIN" --password="$ADMIN_PASS" --email="$ADMIN_MAIL" 
+
+rm -rf $WEBROOT/install
+
+# required for friendly urls
+touch $WEBROOT/.htaccess
+touch $WEBROOT/robots.txt
+chown www-data:www-data $WEBROOT/.htaccess
+chown www-data:www-data $WEBROOT/robots.txt
+
+# enable ssl
+#$MYSQL_BATCH --execute "UPDATE $DB_NAME.ps_configuration SET value = '1' WHERE name = 'PS_SSL_ENABLED';"
+
+# stop services
+/etc/init.d/apache2 stop
+/etc/init.d/mysql stop
