@@ -6,6 +6,16 @@
 #include <turnkey/revisioncontrol>
 #include <turnkey/lamp>
 
+xserver-xorg 
+xserver-xorg-core 
+xfonts-base 
+xinit
+ 
+cinnamon-core 
+libgl1-mesa-dri 
+
+gnome-terminal
+  
 golang
 php5-gd             
 php5-mcrypt           
