@@ -6,7 +6,7 @@
 #include <turnkey/revisioncontrol>
 #include <turnkey/lamp>
 
-
+golang
 php5-gd             
 php5-mcrypt           
 php5-curl           
