@@ -8,3 +8,5 @@ Shopping Cart:	 https://$ipaddr
       Admin:	 https://$ipaddr/admin
       User:	     Admin
       Password:	 turnkey1
+      
+Desktop: type startx
