@@ -44,13 +44,13 @@ and on top of that:
     smbclient //1.0.0.61/storage -Uroot
     mount -t cifs //1.0.0.61/storage /mnt -o username=root,password=PASSWORD
 
-Credentials *(passwords set at first boot)*
+Credentials (passwords set at first boot)
 -------------------------------------------
 
 -  Webmin, Webshell, SSH, Samba: username **root**
 -  Web based file manager (SambaDAV):
    
-   - username **root** (or Samba users)
+   - username root (or Samba users)
    - Opencart username: Admin 
    - Opencart Password: turnkey1 
 
