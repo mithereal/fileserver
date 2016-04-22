@@ -58,3 +58,5 @@ Credentials *(passwords set at first boot)*
 .. _Samba: http://www.samba.org/samba/what_is_samba.html
 .. _SambaDAV: https://github.com/1afa/sambadav
 
+-------------------------------------------
+Desktop Environment is cinnamon
